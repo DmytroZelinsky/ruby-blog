@@ -9,8 +9,13 @@
                   data: { confirm: "Are you sure?" } %></li>
 </ul>
 
+<% if @article.image.attached? %>
+    <%= image_tag @article.image %>
+  <% end %>
+
 <h2>Comments</h2>
 <%= render @article.comments %>
 
+<p><%= link_to "Go back to articles", articles_path %></p>
 <h2>Add a comment:</h2>
 <%= render 'comments/form' %>

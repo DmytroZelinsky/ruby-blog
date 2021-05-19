@@ -18,9 +18,19 @@
     <div>
       <%= form.submit %>
     </div>
+
     <div>
       <%= form.label :status %><br>
       <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
+    </div>
+
+    <div>
+      <%= form.label :image %>
+      <%= form.file_field :image %>
+
+      <% if article.image.attached? %>
+        <%= image_tag article.image %>
+      <% end %>
     </div>
 
   <% end %>
