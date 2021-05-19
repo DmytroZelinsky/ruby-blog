@@ -1,7 +1,10 @@
 <h1><%= @article.title %></h1>
 
 <p><%= @article.body %></p>
-
+<p>
+  <strong>Author:</strong>
+  <%= @article.author.email %>
+</p>
 <ul>
   <li><%= link_to "Edit", edit_article_path(@article) %></li>
   <li><%= link_to "Destroy", article_path(@article),
