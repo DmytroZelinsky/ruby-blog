@@ -1,6 +1,5 @@
 class ArticlesController < ApplicationController
-
-  before_action :authenticate_user!, only: %i[new edit create update destroy]
+  before_action :authenticate_user!, except: [ :index ]
   def index
     @articles = Article.all
   end
@@ -16,7 +15,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    @article.author = current_user
+
     if @article.save
       redirect_to @article
     else
@@ -41,13 +40,13 @@ class ArticlesController < ApplicationController
   def destroy
     @article = Article.find(params[:id])
     @article.destroy
-    
+    notice
     redirect_to root_path
   end
 
   private
     def article_params
-      params.require(:article).permit(:title, :body, :status, :image)
+      params.require(:article).permit(:title, :body, :status, :image, :user_id)
     end
 
 end
