@@ -1,12 +1,19 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!, except: [ :index ]
+  before_action :authenticate_user!, except: [ :index , :search]
   def index
-    @articles = Article.all
+    @articles = Article.all.paginate(page: params[:page], per_page:2)
+    @q = Article.ransack(params[:q])
   end
   
+  def search
+    @q = Article.ransack(params[:q])
+    @articles = @q.result
+  end
+
   def show
     @article = Article.find(params[:id])
     @articles = Article.all
+
   end
 
   def new
@@ -44,9 +51,12 @@ class ArticlesController < ApplicationController
     redirect_to root_path
   end
 
+
+
   private
     def article_params
       params.require(:article).permit(:title, :body, :status, :image, :user_id)
     end
-
+    
+    
 end
