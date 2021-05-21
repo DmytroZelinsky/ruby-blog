@@ -16,10 +16,6 @@
         <div><%= message %></div>
       <% end %>
     </div>
-  
-    <div>
-      <%= form.submit %>
-    </div>
 
     <div>
       <%= form.label :status %><br>
@@ -27,12 +23,24 @@
     </div>
 
     <div>
+      <%= form.label :category %><br>
+      <%= form.select :category, ['Art', 'Sport', 'Science'] %>
+    </div>
+
+    <% article.errors.full_messages_for(:category).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+    <div>
       <%= form.label :image %>
       <%= form.file_field :image %>
 
       <% if article.image.attached? %>
         <%= image_tag article.image %>
       <% end %>
+    </div>
+
+  <div>
+      <%= form.submit %>
     </div>
 
   <% end %>

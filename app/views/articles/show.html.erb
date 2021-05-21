@@ -4,7 +4,8 @@
 <h1><%= @article.title %></h1>
 
 <p><%= @article.body %></p>
-
+<%= @likes.count %>
+<%= button_to "Like", action: "new" %>
 <% if can? :update, @article %>
   <ul>
     <li><%= link_to "Edit", edit_article_path(@article) %></li>
@@ -16,7 +17,7 @@
 <% if @article.image.attached? %>
     <%= image_tag @article.image %>
   <% end %>
-
+<%= @article.category %>
 <h2>Comments</h2>
 <%= render @article.comments %>
 

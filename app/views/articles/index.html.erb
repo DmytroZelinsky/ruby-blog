@@ -6,6 +6,12 @@
 
 Our blog has <%= Article.public_count %> articles and counting!
 
+<%= form_with url: "/filter", method: :post do |form| %>
+  <%= form.label :category %><br>
+  <%= form.select :category, ['Art', 'Sport', 'Science'], selected: 'Art' %>
+  <%= form.submit "Filter" %>
+<% end %>
+
 <%= render 'articles/search_form', q: @q  %>
 
 <%= render 'articles/article_display', articles: @articles  %>

@@ -2,8 +2,9 @@ class ArticlesController < ApplicationController
   load_and_authorize_resource
   before_action :authenticate_user!, except: [ :index , :search]
   def index
-    @articles = Article.all.paginate(page: params[:page], per_page:4)
+    @articles = Article.all.paginate(page: params[:page], per_page: 4)
     @q = Article.ransack(params[:q])
+    
   end
   
   def search
@@ -11,10 +12,14 @@ class ArticlesController < ApplicationController
     @articles = @q.result
   end
 
+  def filter
+    @articles = Article.where(category: params[:category])
+  end
+
   def show
     @article = Article.find(params[:id])
     @articles = Article.all
-
+    @likes = @article.likes
   end
 
   def new
@@ -51,12 +56,9 @@ class ArticlesController < ApplicationController
     notice
     redirect_to root_path
   end
-
-
-
   private
     def article_params
-      params.require(:article).permit(:title, :body, :status, :image, :user_id)
+      params.require(:article).permit(:title, :body, :status, :image, :user_id, :category)
     end
     
     

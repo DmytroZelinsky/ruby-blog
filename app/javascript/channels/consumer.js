@@ -4,3 +4,8 @@
 import { createConsumer } from "@rails/actioncable"
 
 export default createConsumer()
+
+
+function myFunction(){
+    console.log("ass");
+}
