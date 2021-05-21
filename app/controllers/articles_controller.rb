@@ -1,7 +1,8 @@
 class ArticlesController < ApplicationController
+  load_and_authorize_resource
   before_action :authenticate_user!, except: [ :index , :search]
   def index
-    @articles = Article.all.paginate(page: params[:page], per_page:2)
+    @articles = Article.all.paginate(page: params[:page], per_page:4)
     @q = Article.ransack(params[:q])
   end
   

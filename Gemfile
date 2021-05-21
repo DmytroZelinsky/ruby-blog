@@ -57,3 +57,5 @@ gem 'devise'
 gem "ransack", "~> 2.4"
 
 gem 'will_paginate', '~> 3.1.1'
+
+gem 'cancancan'

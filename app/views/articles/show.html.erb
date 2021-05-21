@@ -1,14 +1,18 @@
+<h1><%= User.find(@article.user_id).email %></h1>
+
+
 <h1><%= @article.title %></h1>
 
 <p><%= @article.body %></p>
 
-<ul>
-  <li><%= link_to "Edit", edit_article_path(@article) %></li>
-  <li><%= link_to "Destroy", article_path(@article),
-                  method: :delete,
-                  data: { confirm: "Are you sure?" } %></li>
-</ul>
-
+<% if can? :update, @article %>
+  <ul>
+    <li><%= link_to "Edit", edit_article_path(@article) %></li>
+    <li><%= link_to "Destroy", article_path(@article),
+                    method: :delete,
+                    data: { confirm: "Are you sure?" } %></li>
+  </ul>
+<% end %>
 <% if @article.image.attached? %>
     <%= image_tag @article.image %>
   <% end %>
