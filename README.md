@@ -1,24 +1,12 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Реалізовано:
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+getting started - 5
+автентифікація різними користувачами - 2
+авторизація + режим адміна - 3 + 1
+фільтрування за категоріями - 2
+пагінація - 2
+пошук за заголовком - 2
+завантаження картинок - 2
+розгортання на heroku - https://safe-inlet-64063.herokuapp.com/ - 3
+Разом - 22
